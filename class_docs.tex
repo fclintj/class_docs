@@ -193,23 +193,25 @@
     } 
 
     \newcommand{\structure} {
-        The nueral network structre is seen in the images below:
+    \subsection{Structure}
+        A neural network is based on the concept that some information is more important then others.  Each input will be multiplied with a weight value and then summed together.  The more important data receives a heavier weight then the other inputs.  They are then summed together.  This is in effect a projection onto the weighted vector space.  The neural network structure is seen in the images below:
+        
+        \newFigure{media/single-layer-neuron.pdf}[Single Layer Neuron][0.5]
+        The second image shows a multi-level neural net, where the output of the first level is forwarded to a second net.  There are circumstances in which this works more favorably then a single layer, hence the name "deep" neural nets.
         \newFigure{media/multi-neuron.pdf}[Multi Neuron Network][0.5]
-        \newFigure{media/single-layer-nueron.pdf}[Single Layer Nueron][0.5]
     } 
 
     \newcommand{\updating} {
-        To solve for the minima using the gradient decent tequnique, the equation
+        To solve for the minima using the gradient decent technique, the equation
 
         \newFigure{media/jgraph.pdf}[$J(\theta)$ Graph][0.6]
 
-        \begin{equation}
+        
             $\frac{1}{N} \sum_{i=1}^{N} (g(x+i,\theta)-y_i)^2 = J(\theta)$
-        \end{equation}
-
-        \begin{equation}
+        
+        
         $\int_{R^x}P(x)\cdot y(x) $
-        \end{equation}
+        
     } 
 
 \begin{document}
