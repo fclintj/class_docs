@@ -6,13 +6,13 @@
 \newcommand{\main} {
    % document setup
    \pageSetup
-   \createTitlePage
+   % \createTitlePage
    \includeHeader
    \createTableOfContents
 
    % content
    \introduction 
-   \preLab 
+   \equtaions    
 }
 
 %  ┌────────────────────────┐
@@ -175,9 +175,12 @@
         \section{Introduction}
     } 
 
-    \newcommand{\preLab} {
-        \section{Pre Lab}\label{_prelab}
-    }
+    \newcommand{\equtaions} {
+        $$\frac{1}{N} \sum_{i=1}^{N} (g(x+i,\theta)-y_i)^2 = J(\theta)$$
+
+        $$\int_{R^x}P(x)\cdot y(x) $$
+    } 
+
 
 \begin{document}
     \main
