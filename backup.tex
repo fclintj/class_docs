@@ -1,0 +1,200 @@
+\title { Class Documentation                }
+\author{ Clint Ferrin and Daniel Mortensen  }
+
+\documentclass{article}\makeatletter
+
+\newcommand{\main} {
+   % document setup
+   \pageSetup
+   \createTitlePage
+   \includeHeader
+   \createTableOfContents
+
+   % content
+   \introduction 
+   \preLab 
+}
+
+%  ┌────────────────────────┐
+%  │     Extra Packages     │
+%  └────────────────────────┘
+    \usepackage[utf8]{inputenc}	% allows new character options
+    \usepackage[a4paper]{geometry}   % Paper dimensions and margins
+    \usepackage{fancyhdr}   % include document header
+    \usepackage{amsmath}    % allows equations to be split
+    \usepackage{enumitem}   % create lists
+    \usepackage{graphicx}	% manage images and graphics
+    \usepackage{hyperref}	% creates hyper-link color options
+    \usepackage{cleveref}	% (\Cref) include "Figure" on \reff 
+    \usepackage{xparse}     % include high performing functions 
+    \usepackage{xstring}    % StrSubstitute replace character
+    \usepackage{floatrow}	% allows placement of figures [H]
+    \usepackage{url}    	% package for url links
+    \usepackage{titletoc}   % change Table of Contents settings
+    \usepackage{caption} % removes figure from LoF: \caption[]{}
+    \usepackage{bm}    %use of bold characters in math mode
+
+%  ┌────────────────────────┐
+%  │   General Functions    │
+%  └────────────────────────┘
+    \DeclareDocumentCommand{\reff}{m} {
+        \edef\link{#1}
+        \hspace{-0.5em}\hyperref[\link]{\Cref*{\link}} \hspace{-0.65em}
+    }
+
+    \DeclareDocumentCommand{\newFigure}{m o o} {
+        \edef\path{#1} \edef\figcaption{#2} \edef\size{#3}  
+        % add label to figure
+        \StrSubstitute{#1}{.pdf}{}[\temp]
+        \StrSubstitute{\temp}{.jpg}{}[\temp]
+        \StrSubstitute{\temp}{.png}{}[\temp]
+        \expandafter\StrSubstitute\expandafter{\temp}{-}{ }[\temp]
+        %\label{\temp} % label gets rid of type and -.
+        
+        
+        % add size if not present
+        \IfNoValueTF{#3} { % if 2 and 3 are NULL
+            \def\size{0.75}
+            }{}
+         
+        % add caption if not present
+        \IfNoValueTF{#2} { % if 2 and 3 are NULL
+            %\expandafter\StrSubstitute\expandafter{\temp}{-}{ }[\output]
+            \newcommand\helphere{\temp}
+            \StrBehind{\helphere}{/}[\figcaption]
+        }{}
+        
+        \begin{figure}[H]
+        \begin{center}
+        \includegraphics[width=\size\textwidth]{\path}
+        % I deleted the capitalize function because it wouldn't pass []
+        % \capitalisewords{}
+        \caption{\figcaption}
+        \label{\temp} % label gets rid of type and -.
+        \end{center}
+        \end{figure} 
+    }
+
+%  ┌────────────────────────┐
+%  │   Content Functions    │
+%  └────────────────────────┘
+    \newcommand{\pageSetup} {
+
+        \let\Title\@title
+        \let\Date\@date
+        \let\Author\@author
+
+        \renewcommand{\thesubsection}{\hspace{-1em}}
+        \renewcommand{\thesection}{\hspace{-1em}}
+        \renewcommand{\partname}{}
+        \renewcommand{\thepart}{}
+
+        \newgeometry{left=1in,bottom=1in,right=1in,top=1in} % page dims
+        \setlength\parindent{0pt}	% set no tab on new paragraphs
+        \parskip = \baselineskip	% set single skip after paragraphs
+        \setlist{nosep,after=\vspace{\baselineskip}} % remove space on list
+        }\hypersetup{				% hyper-links environment
+            colorlinks,
+            linkcolor	= {black},
+            citecolor	= {black},
+            urlcolor	= {black},
+            pdfborderstyle={/S/U/W 1}
+        }
+
+    \newcommand{\createTitlePage} {
+        \clearpage
+        \begin{center}
+            \thispagestyle{empty}
+            \huge{\Title} 
+
+            % line
+            \vspace{0.25em}
+            \line(1,0){250}\normalsize 
+
+            \vspace{5mm}
+            Documentation for Neural Networks 
+
+            \vspace{2.5cm}
+                \begin{figure}[H]
+                \begin{center}
+                \includegraphics[width=0.45\textwidth]{media/title.png}
+                    \caption[]{Utah State University}
+                \end{center}
+                \end{figure} 
+            \vspace{2.5cm}
+
+            \Author \vspace{-1em}
+
+            Utah State University \vspace{-1em}
+
+            \Date           \vspace{-1em}
+
+            \pagenumbering{gobble} 
+            \newpage
+        \end{center}
+    }
+
+    \newcommand{\createTableOfContents} {
+        \pagenumbering{roman}
+        \clearpage
+        \newdimen\punktik
+        \def\cvak{\ifdim\punktik<6pt \global\punktik=3pt \else\global\punktik=3pt \fi}
+        \def\tocdots{\cvak\leaders\hbox to10pt{\kern\punktik.\hss}\hfill}
+
+        \titlecontents{section}[0em]{\vskip -1em}{}{\itshape}{\hfill\thecontentspage}
+
+        \titlecontents{subsection}[1em]{\vskip -1em}{}{} {\tocdots\thecontentspage}
+        
+        \tableofcontents 
+
+        \clearpage
+        \renewcommand*\listfigurename{\normalsize{List of Figures}}
+        \listoffigures
+
+        \renewcommand*\listtablename{\normalsize{List of Tables}}
+        \listoftables
+
+        \newpage
+        \pagenumbering{arabic}
+    }
+
+    \newcommand{\includeHeader} {
+        \pagestyle{fancy}
+        \fancyhf{}
+        % \fancyhead[L]{Top Left}
+        \fancyhead[L]{\Title}
+        \fancyhead[R]{\nouppercase\leftmark}
+        % \fancyhead[R]{Top Right}
+        \renewcommand{\headrulewidth}{0.5pt}
+        %\fancyfoot[L]{Bottom Left}
+        \fancyfoot[C]{\thepage}
+        %\fancyfoot[R]{Bottom Right}
+        \renewcommand{\footrulewidth}{0.5pt}
+    }
+
+    \newcommand{\introduction} {
+        \section{Neural Nets Overview}
+        This section covers the basic workings and theory behind a neural net.  It is divided up into 3 sections; vocabulary, structure, and updating.
+        \subsection{Vocabulary}
+        This section goes over the nomenclature used in this chapter.  Variables are all defined as well as other terminology.
+        \begin{itemize}
+        
+        
+        \item \textbf{Performance Function} ($g(x,\theta)$): The performance function defines how close the output of the neural net is to the expected value.  This is used with a gradient descent to help train the net.
+        \item \textbf{Gradient descent}: A mathematical procedure used to find the local minima based on a derivative. The derivative is subtracted from the total and then rerun again.  Once the derivative equals zero, a minima has been located.
+        \item \textbf{Step Size ($\mu$)}:a coefficient used to control how large the step size will be in the gradient descent function.  
+        \item \textbf{theta} ($\theta$): a vector representing both the weights (\textbf{x}) and the bias term $b_0$
+        \item \textbf{A}: the result of a single layer neuron before the non-linear function is applied.
+        \item \textbf{Z}: the result of applying the non-linear function to A
+        \end{itemize}
+        
+      
+    } 
+
+    \newcommand{\preLab} {
+        \section{Pre Lab}\label{_prelab}
+    }
+
+\begin{document}
+    \main
+\end{document}
