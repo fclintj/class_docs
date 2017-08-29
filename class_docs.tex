@@ -200,14 +200,19 @@
     } 
 
     \DeclareDocumentCommand{\updating}{} {
-        To solve for the minim using the gradient decent technique, the equation
+        To solve for the minim using the gradient decent technique, the equations below are used. \reff{eq:performaceFunction} is the Performance Function, \reff{eq:expectedValue} is the Expected value, and \reff{eq:gradDecent} is the Gradient Decent equation (not specifically named by Dr. Gunther).
 
         \newFigure{media/jgraph.pdf}[$J(\theta)$ Graph][0.6]
-        \begin{equation}
+        \begin{equation}\label{eq:performaceFunction}
             \frac{1}{N} \sum_{i=1}^{N} (g(x+i,\theta)-y_i)^2 = J(\theta)
         \end{equation}
-        \begin{equation}
+
+        \begin{equation}\label{eq:expectedValue}
             \int_{R^x}P(x)\cdot y(x)
+        \end{equation}
+
+        \begin{equation}\label{eq:gradDecent}
+            \theta_{k+1} = \theta - \mu  \frac{\partial(J(\theta))}{\partial\theta}
         \end{equation}
     } 
 
