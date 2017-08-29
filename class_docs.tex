@@ -31,7 +31,8 @@
     \usepackage{floatrow}	% allows placement of figures [H]
     \usepackage{url}    	% package for url links
     \usepackage{titletoc}   % change Table of Contents settings
-    \usepackage{caption}    % removes figure from LoF: \caption[]{}
+    \usepackage{caption} % removes figure from LoF: \caption[]{}
+    \usepackage{bm}    %use of bold characters in math mode
 
 %  ┌────────────────────────┐
 %  │   General Functions    │
@@ -111,7 +112,7 @@
             \line(1,0){250}\normalsize 
 
             \vspace{5mm}
-            Documentation for ECE Classes at USU 
+            Documentation for Neural Networks 
 
             \vspace{2.5cm}
                 \begin{figure}[H]
@@ -172,7 +173,22 @@
     }
 
     \newcommand{\introduction} {
-        \section{Introduction}
+        \section{Neural Nets Overview}
+        This section covers the basic workings and theory behind a neural net.  It is divided up into 3 sections; vocabulary, structure, and updating.
+        \subsection{Vocabulary}
+        This section goes over the nomenclature used in this chapter.  Variables are all defined as well as other terminology.
+        \begin{itemize}
+        
+        
+        \item \textbf{Performance Function} ($g(x,\theta)$): The performance function defines how close the output of the neural net is to the expected value.  This is used with a gradient descent to help train the net.
+        \item \textbf{Gradient descent}: A mathematical procedure used to find the local minima based on a derivative. The derivative is subtracted from the total and then rerun again.  Once the derivative equals zero, a minima has been located.
+        \item \textbf{Step Size ($\mu$)}:a coefficient used to control how large the step size will be in the gradient descent function.  
+        \item \textbf{theta} ($\theta$): a vector representing both the weights (\textbf{x}) and the bias term $b_0$
+        \item \textbf{A}: the result of a single layer neuron before the non-linear function is applied.
+        \item \textbf{Z}: the result of applying the non-linear function to A
+        \end{itemize}
+        
+      
     } 
 
     \newcommand{\preLab} {
