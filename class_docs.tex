@@ -4,9 +4,9 @@
 \documentclass{article}\makeatletter
 
 \newcommand{\main} {
-   % document setup
-   \pageSetup
-   % \createTitlePage
+    % document setup
+    \pageSetup
+    % \createTitlePage
    \includeHeader
    \createTableOfContents
 
@@ -51,28 +51,28 @@
         \StrSubstitute{\temp}{.png}{}[\temp]
         \expandafter\StrSubstitute\expandafter{\temp}{-}{ }[\temp]
         %\label{\temp} % label gets rid of type and -.
-        
-        
+
+
         % add size if not present
         \IfNoValueTF{#3} { % if 2 and 3 are NULL
             \def\size{0.75}
             }{}
-         
-        % add caption if not present
+
+            % add caption if not present
         \IfNoValueTF{#2} { % if 2 and 3 are NULL
             %\expandafter\StrSubstitute\expandafter{\temp}{-}{ }[\output]
             \newcommand\helphere{\temp}
             \StrBehind{\helphere}{/}[\figcaption]
         }{}
-        
+
         \begin{figure}[H]
-        \begin{center}
-        \includegraphics[width=\size\textwidth]{\path}
-        % I deleted the capitalize function because it wouldn't pass []
-        % \capitalisewords{}
-        \caption{\figcaption}
-        \label{\temp} % label gets rid of type and -.
-        \end{center}
+            \begin{center}
+                \includegraphics[width=\size\textwidth]{\path}
+                % I deleted the capitalize function because it wouldn't pass []
+                % \capitalisewords{}
+                \caption{\figcaption}
+                \label{\temp} % label gets rid of type and -.
+            \end{center}
         \end{figure} 
     }
 
@@ -94,8 +94,8 @@
         \setlength\parindent{0pt}	% set no tab on new paragraphs
         \parskip = \baselineskip	% set single skip after paragraphs
         \setlist{nosep,after=\vspace{\baselineskip}} % remove space on list
-        }\hypersetup{				% hyper-links environment
-            colorlinks,
+    }\hypersetup{				% hyper-links environment
+        colorlinks,
             linkcolor	= {black},
             citecolor	= {black},
             urlcolor	= {black},
@@ -117,10 +117,10 @@
 
             \vspace{2.5cm}
                 \begin{figure}[H]
-                \begin{center}
-                \includegraphics[width=0.45\textwidth]{media/title.png}
-                    \caption[]{Utah State University}
-                \end{center}
+                    \begin{center}
+                        \includegraphics[width=0.45\textwidth]{media/title.png}
+                        \caption[]{Utah State University}
+                    \end{center}
                 \end{figure} 
             \vspace{2.5cm}
 
@@ -145,7 +145,7 @@
         \titlecontents{section}[0em]{\vskip -1em}{}{\itshape}{\hfill\thecontentspage}
 
         \titlecontents{subsection}[1em]{\vskip -1em}{}{} {\tocdots\thecontentspage}
-        
+
         \tableofcontents 
 
         \clearpage
@@ -173,42 +173,38 @@
         \renewcommand{\footrulewidth}{0.5pt}
     }
 
-    \newcommand{\introduction} {
+    \DeclareDocumentCommand{\introduction}{} {
         \section{Neural Nets Overview}
         This section covers the basic workings and theory behind a neural net.  It is divided up into 3 sections; vocabulary, structure, and updating.
         \subsection{Vocabulary}
         This section goes over the nomenclature used in this chapter.  Variables are all defined as well as other terminology.
         \begin{itemize}
-        
-        
-        \item \textbf{Performance Function} ($g(x,\theta)$): The performance function defines how close the output of the neural net is to the expected value.  This is used with a gradient descent to help train the net.
-        \item \textbf{Gradient descent}: A mathematical procedure used to find the local minima based on a derivative. The derivative is subtracted from the total and then rerun again.  Once the derivative equals zero, a minima has been located.
-        \item \textbf{Step Size ($\mu$)}:a coefficient used to control how large the step size will be in the gradient descent function.  
-        \item \textbf{theta} ($\theta$): a vector representing both the weights (\textbf{x}) and the bias term $b_0$
-        \item \textbf{A}: the result of a single layer neuron before the non-linear function is applied.
-        \item \textbf{Z}: the result of applying the non-linear function to A
+
+
+            \item \textbf{Performance Function} ($g(x,\theta)$): The performance function defines how close the output of the neural net is to the expected value.  This is used with a gradient descent to help train the net.
+            \item \textbf{Gradient descent}: A mathematical procedure used to find the local minima based on a derivative. The derivative is subtracted from the total and then rerun again.  Once the derivative equals zero, a minima has been located.
+            \item \textbf{Step Size ($\mu$)}:a coefficient used to control how large the step size will be in the gradient descent function.  
+            \item \textbf{theta} ($\theta$): a vector representing both the weights (\textbf{x}) and the bias term $b_0$
+            \item \textbf{A}: the result of a single layer neuron before the non-linear function is applied.
+            \item \textbf{Z}: the result of applying the non-linear function to A
         \end{itemize}
-        
-      
     } 
 
-    \newcommand{\structure} {
+    \DeclareDocumentCommand{\structure}{} {
         The nueral network structre is seen in the images below:
         \newFigure{media/multi-neuron.pdf}[Multi Neuron Network][0.5]
         \newFigure{media/single-layer-nueron.pdf}[Single Layer Nueron][0.5]
     } 
 
-    \newcommand{\updating} {
-        To solve for the minima using the gradient decent tequnique, the equation
+    \DeclareDocumentCommand{\updating}{} {
+        To solve for the minim using the gradient decent tequnique, the equation
 
         \newFigure{media/jgraph.pdf}[$J(\theta)$ Graph][0.6]
-
         \begin{equation}
-            $\frac{1}{N} \sum_{i=1}^{N} (g(x+i,\theta)-y_i)^2 = J(\theta)$
+            \frac{1}{N} \sum_{i=1}^{N} (g(x+i,\theta)-y_i)^2 = J(\theta)
         \end{equation}
-
         \begin{equation}
-        $\int_{R^x}P(x)\cdot y(x) $
+            \int_{R^x}P(x)\cdot y(x)
         \end{equation}
     } 
 
