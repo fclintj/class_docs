@@ -12,7 +12,8 @@
 
    % content
    \introduction 
-   \equtaions    
+   \structure    
+   \updating    
 }
 
 %  ┌────────────────────────┐
@@ -191,12 +192,25 @@
       
     } 
 
-    \newcommand{\equtaions} {
-        $$\frac{1}{N} \sum_{i=1}^{N} (g(x+i,\theta)-y_i)^2 = J(\theta)$$
-
-        $$\int_{R^x}P(x)\cdot y(x) $$
+    \newcommand{\structure} {
+        The nueral network structre is seen in the images below:
+        \newFigure{media/multi-neuron.pdf}[Multi Neuron Network][0.5]
+        \newFigure{media/single-layer-nueron.pdf}[Single Layer Nueron][0.5]
     } 
 
+    \newcommand{\updating} {
+        To solve for the minima using the gradient decent tequnique, the equation
+
+        \newFigure{media/jgraph.pdf}[$J(\theta)$ Graph][0.6]
+
+        \begin{equation}
+            $\frac{1}{N} \sum_{i=1}^{N} (g(x+i,\theta)-y_i)^2 = J(\theta)$
+        \end{equation}
+
+        \begin{equation}
+        $\int_{R^x}P(x)\cdot y(x) $
+        \end{equation}
+    } 
 
 \begin{document}
     \main

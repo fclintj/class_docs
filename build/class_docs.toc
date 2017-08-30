@@ -1,7 +1,0 @@
-\ttl@change@i {\@ne }{section}{0em}{\vskip -1em}{}{\itshape }{\hfill \thecontentspage }\relax 
-\ttl@change@v {section}{}{}{}\relax 
-\ttl@change@i {\@ne }{subsection}{1em}{\vskip -1em}{}{}{\tocdots \thecontentspage }\relax 
-\ttl@change@v {subsection}{}{}{}\relax 
-\contentsline {section}{\numberline {\hspace {-1em}}Introduction}{1}{section.1}
-\contentsline {section}{\numberline {\hspace {-1em}}Pre Lab}{1}{section.2}
-\contentsfinish 
